@@ -15,6 +15,6 @@ public class ReflectionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rProbe.RenderProbe(rText);
+        rProbe.RenderProbe(rText);//How to render our probe and the render texture
     }
 }

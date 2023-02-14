@@ -6,10 +6,12 @@ Shader "Custom/ToonRamp"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _myBump("Bump Texture", 2D) = "bump" {}//These are the addition of our detailed bump texture
+        _mySlider("Bump Amount", Range(0,10)) = 1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+       
 
         CGPROGRAM
     #pragma surface surf Ramp//this ensures the program compiles as a ramp surface shader
@@ -28,13 +30,19 @@ Shader "Custom/ToonRamp"
 
     struct Input {
         float2 uv_MainTex;//the outputted texture uv coords
+        float2 uv_myBump;//This should unlock the bump texture coords
+        float3 viewDir;
     };
 
     sampler2D _MainTex;
     float4 _Color;
+    sampler2D _myBump;
+    half _mySlider;//This can let you use the slider
 
     void surf(Input IN, inout SurfaceOutput o) {
         o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb * _Color.rgb; //the colors are applied through the albedo for each uv coordinate
+        o.Normal = UnpackNormal(tex2D(_myBump, IN.uv_myBump));
+        o.Normal = float3(_mySlider, _mySlider, 1);
     }
     ENDCG
     }
