@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 25c0686dc06596b48a4794412dde3cac
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _myDiffuse: {instanceID: 0}
+  - _myBump: {fileID: 2800000, guid: 7874d04b11c1d61428bdcd16acd5b6b7, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
